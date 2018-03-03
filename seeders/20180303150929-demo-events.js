@@ -12,7 +12,8 @@ module.exports = {
       {
         title: "Festival from the Past",
         startDate: "2017-12-02",
-        endDate: "2017-12-08"
+        endDate: "2017-12-08",
+        description: "Blast from the past."
       }
     ], {})
   },

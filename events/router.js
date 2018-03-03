@@ -23,26 +23,27 @@ router.get('/events', (req, res) => {
     })
 })
 
+router.get('/events/:id', (req, res) => {
+  Event.findById(req.params.id)
+    .then(result => {
+      if (!result) return res.status(404).json({ message: "No event found."})
+      res.json(result)
+    })
+    .catch(err => {
+      res.status(500).json({ message: "Something went wrong!" })
+    })
+})
+
 router.post('/events', (req, res) => {
   const event = req.body
-  const start = Date.parse(event.startDate)
-  const end = Date.parse(event.endDate)
-  const currentDate = new Date()
 
-  console.log(start)
-  console.log(end)
-
-  if (+start >= +currentDate && start < end) {
-    Event.create(event)
-      .then(entity => {
-        res.status(201).json(entity)
-      })
-      .catch(err => {
-        res.status(422).json({ message: err.message })
-      })
-  } else {
-    res.status(422).json({ message: "Invalid request" })
-  }
+  Event.create(event)
+    .then(entity => {
+      res.status(201).json(entity)
+    })
+    .catch(err => {
+      res.status(422).json({ message: err.message })
+    })
 })
 
 module.exports = router
