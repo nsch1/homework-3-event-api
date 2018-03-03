@@ -3,6 +3,21 @@ const {Event} = require('../models')
 
 const router = new Router()
 
+const updateEvent = (req, res) => {
+  const updates = req.body
+
+  Event.findById(req.params.id)
+    .then(entity => {
+      return entity.update(updates)
+    })
+    .then(updatedEvent => {
+      res.json(updatedEvent)
+    })
+    .catch(err => {
+      res.status(500).json({ message: err.message })
+    })
+}
+
 router.get('/events', (req, res) => {
   Event.findAll({
     attributes: ['title', 'startDate', 'endDate']
@@ -45,6 +60,10 @@ router.post('/events', (req, res) => {
       res.status(422).json({ message: err.message })
     })
 })
+
+router.put('/events/:id', updateEvent)
+
+router.patch('/events/:id', updateEvent)
 
 router.delete('/events/:id', (req, res) => {
   Event.findById(req.params.id)
