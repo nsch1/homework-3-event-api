@@ -46,4 +46,17 @@ router.post('/events', (req, res) => {
     })
 })
 
+router.delete('/events/:id', (req, res) => {
+  Event.findById(req.params.id)
+    .then(entity => {
+      return entity.destroy()
+    })
+    .then(_ => {
+      res.json({ message: 'The event was deleted.' })
+    })
+    .catch(err => {
+      res.status(500).json({ message: err.message })
+    })
+})
+
 module.exports = router
