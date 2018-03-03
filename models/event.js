@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     validate: {
       startBeforeEnd() {
         if (Date.parse(this.startDate) > Date.parse(this.endDate)) {
-          throw new Error("Start date can't be before end date.")
+          throw new Error("Start date can't be after end date.")
         }
       }
     }
