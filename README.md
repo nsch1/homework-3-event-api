@@ -8,6 +8,8 @@ A simple event api made following the homework instructions.
 
 2. Run `yarn install`
 
-3. Run `yarn sequelize db:migrate` & `yarn sequelize db:seed:all`
+3. Setup your database in `config/config.json`
 
-4. Run `yarn start` or `yarn dev`
+4. Run `yarn sequelize db:migrate` & `yarn sequelize db:seed:all`
+
+5. Run `yarn start` or `yarn dev`
