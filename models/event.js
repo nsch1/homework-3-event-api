@@ -18,6 +18,11 @@ module.exports = (sequelize, DataTypes) => {
         if (Date.parse(this.startDate) > Date.parse(this.endDate)) {
           throw new Error("Start date can't be after end date.")
         }
+      },
+      startBeforeToday() {
+        if (Date.parse(this.startDate) < new Date()) {
+          throw new Error("Start date must be in the future.")
+        }
       }
     }
   });
