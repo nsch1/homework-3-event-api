@@ -17,12 +17,12 @@ A simple event api made following the homework instructions.
 ### RESTful routes
 
 |**URI**|**VERB**|**ACTION**|
-|------------|-----------|----------|
-| /events    | GET       | index    |
-| /events    | POST      | create   |
-| /events/id | GET       | show     |
-| /events/id | PATCH/PUT | update   |
-| /events/id | DELETE    | destroy  |
+|-------------|-----------|----------|
+| /events     | GET       | index    |
+| /events     | POST      | create   |
+| /events/:id | GET       | show     |
+| /events/:id | PATCH/PUT | update   |
+| /events/:id | DELETE    | destroy  |
 
 ### Events
 
