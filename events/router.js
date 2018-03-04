@@ -1,11 +1,8 @@
 const Router = require('express').Router
 const {Event} = require('../models')
-const Sequelize = require('sequelize')
-const Op = Sequelize.Op
+const Op = require('sequelize').Op
 
 const router = new Router()
-
-const currentDate = new Date()
 
 const updateEvent = (req, res) => {
   const updates = req.body
@@ -55,7 +52,6 @@ router.get('/events/:id', (req, res) => {
 
 router.post('/events', (req, res) => {
   const event = req.body
-  const start = Date.parse(event.startDate)
 
   Event.create(event)
     .then(entity => {
