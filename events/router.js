@@ -1,5 +1,7 @@
 const Router = require('express').Router
 const {Event} = require('../models')
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op
 
 const router = new Router()
 
@@ -22,15 +24,16 @@ const updateEvent = (req, res) => {
 
 router.get('/events', (req, res) => {
   Event.findAll({
-    attributes: ['title', 'startDate', 'endDate']
+    attributes: ['title', 'startDate', 'endDate'],
+    where: {
+      startDate: {
+        [Op.gte]: new Date()
+      }
+    }
   })
     .then(result => {
-      if (!result) return res.status(404).json({
-        message: "Sorry no future events found."
-      })
-
-      const futureEvents = result.filter(event => +Date.parse(event.startDate) >= +currentDate)
-      res.json(futureEvents)
+      if (!result) return res.status(404).json({ message: "Sorry no future events found." })
+      res.json(result)
     })
     .catch(err => {
       res.status(500).json({
