@@ -23,3 +23,14 @@ A simple event api made following the homework instructions.
 | /events/id | GET       | show     |
 | /events/id | PATCH/PUT | update   |
 | /events/id | DELETE    | destroy  |
+
+### Events
+
+The events have 4 properties:
+
+1. title
+2. startDate
+3. endDate
+4. description
+
+Start & end dates should be formatted as `YYYY-MM-DD`
